@@ -787,15 +787,22 @@ class VoxelRenderer:
 
         if visible_sides[1] and unculled_faces['back']:
             self.draw_back(x, y, z, width, height, depth, x_rad, y_rad, z_rad,
-                           x_rad_translate, y_rad_translate, z_rad_translate, (color[0] - 105, color[1], color[2]))
+                           x_rad_translate, y_rad_translate, z_rad_translate, (max(color[0] - 105, 0),
+                                                                                 max(color[1] - 105, 0),
+                                                                                 max(color[2] - 105, 0)))
 
         if visible_sides[5] and unculled_faces['bottom']:
             self.draw_bottom(x, y, z, width, height, depth, x_rad, y_rad, z_rad,
-                             x_rad_translate, y_rad_translate, z_rad_translate, (color[0] - 155, color[1], color[2]))
+                             x_rad_translate, y_rad_translate, z_rad_translate, (max(color[0] - 155, 0),
+                                                                                 max(color[1] - 155, 0),
+                                                                                 max(color[2] - 155, 0)))
 
         if visible_sides[0] and unculled_faces['front']:
             self.draw_front(x, y, z, width, height, depth, x_rad, y_rad, z_rad,
-                            x_rad_translate, y_rad_translate, z_rad_translate, (color[0], color[1] + 45, color[2] + 45))
+                            x_rad_translate, y_rad_translate, z_rad_translate, (45 if color[0] == 0
+                                                                                else color[0], 45 if color[1] == 0 else
+                                                                                color[1],
+                                                                                45 if color[2] == 0 else color[2]))
 
         if visible_sides[3] and unculled_faces['left']:
             self.draw_left(x, y, z, width, height, depth, x_rad, y_rad, z_rad,
@@ -803,8 +810,13 @@ class VoxelRenderer:
 
         if visible_sides[2] and unculled_faces['right']:
             self.draw_right(x, y, z, width, height, depth, x_rad, y_rad, z_rad,
-                            x_rad_translate, y_rad_translate, z_rad_translate, (color[0] - 75, color[1], color[2]))
+                            x_rad_translate, y_rad_translate, z_rad_translate, (max(color[0] - 75, 0),
+                                                                                 max(color[1] - 75, 0),
+                                                                                 max(color[2] - 75, 0)))
 
         if visible_sides[4] and unculled_faces['top']:
             self.draw_top(x, y, z, width, height, depth, x_rad, y_rad, z_rad,
-                          x_rad_translate, y_rad_translate, z_rad_translate, (color[0], color[1] + 90, color[2] + 90))
+                          x_rad_translate, y_rad_translate, z_rad_translate, (90 if color[0] == 0
+                                                                                else color[0], 90 if color[1] == 0 else
+                                                                                color[1],
+                                                                                90 if color[2] == 0 else color[2]))
