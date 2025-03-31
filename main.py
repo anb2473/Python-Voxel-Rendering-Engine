@@ -8,7 +8,7 @@ for z in range(10):
     for x in range(10):
         for y in range(10):
             if (math.cos(x) + math.cos(z)) * 2 < y:
-                world.add_voxel(x + 1, y, z + 1, 1)
+                world.add_voxel(x + 1, y, z + 1, min(x + y + z, 25))
 
 world.cull_face()
 
